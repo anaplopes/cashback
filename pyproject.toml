@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "cashback"
+version = "0.1.0"
+description = "Sistema de cashback para compra de revendedoras."
+authors = ["anaplopes <anapalopes0103@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.94.1"
+uvicorn = "^0.21.1"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+black = "^23.1.0"
+pre-commit = "^3.1.1"
+pytest = "^7.2.2"
+
+[tool.black]
+line-length = 88
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
