@@ -4,7 +4,7 @@ Sistema de cashback para compra de revendedoras.
 
 ## Pré requisito
 
-- Poetry [https://python-poetry.org/docs/#installation]
+- Instalar o [Poetry](https://python-poetry.org/docs/#installation)
 
 
 ## Rodando localmente
@@ -30,7 +30,7 @@ Instale as dependências
 Inicie o servidor
 
 ```bash
-  make start
+  make runserver
 ```
 
 
@@ -45,27 +45,70 @@ Para rodar os testes, rode o seguinte comando
 
 ## Documentação da API
 
-#### Retorna todos os itens
+#### Validar funcionamento da API
 
 ```http
-  GET /api/items
+  GET /api/v1/cashback/health
+```
+
+
+#### Validar um login
+
+```http
+  POST /api/v1/cashback/auth
+```
+
+| Parâmetro   | Tipo       | Descrição                            |
+| :---------- | :--------- | :----------------------------------- |
+| `email`     | `string`   | **Obrigatório**. Email do revendedor |
+| `password`  | `string`   | **Obrigatório**. Senha do revendedor |
+
+
+#### Cadastra um novo revendedor
+
+```http
+  POST /api/v1/cashback/register/dealer
+```
+
+| Parâmetro   | Tipo       | Descrição                            |
+| :---------- | :--------- | :----------------------------------- |
+| `name`      | `string`   | **Obrigatório**. Nome do revendedor  |
+| `cpf`       | `string`   | **Obrigatório**. CPF do revendedor   |
+| `email`     | `string`   | **Obrigatório**. Email do revendedor |
+| `password`  | `string`   | **Obrigatório**. Senha do revendedor |
+
+
+#### Cadastra nova compra
+
+```http
+  POST /api/v1/cashback/register/purchase
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `code`      | `string`   | **Obrigatório**. Código da compra   |
+| `date`      | `string`   | **Obrigatório**. Data da compra     |
+| `value`     | `float`    | **Obrigatório**. Valor da compra    |
+| `cpf`       | `string`   | **Obrigatório**. CPF do revendedor  |
 
-#### Retorna um item
+
+#### Retorna compras cadastradas
 
 ```http
-  GET /api/items/${id}
+  GET /api/v1/cashback/list/purchases/${cpf}
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+| `cpf`       | `string`   | **Obrigatório**. CPF do revendedor          |
 
-#### add(num1, num2)
 
-Recebe dois números e retorna a sua soma.
+#### Retorna acumulado de cashback
 
+```http
+  GET /api/v1/cashback/full/${cpf}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `cpf`       | `string`   | **Obrigatório**. CPF do revendedor          |
