@@ -1,4 +1,4 @@
 
 .PHONY: runserver
 runserver:
-	uvicorn main:app --reload
+	uvicorn cashback.main:app --reload
