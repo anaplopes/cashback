@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter, status
-from cashback.entities.purchase import Purchase
-from cashback.entities.constants import PurchaseStatus
-from cashback.usecases.cashback import cashback_purchase
+from src.entities.purchase import Purchase
+from src.entities.constants import PurchaseStatus
+from src.usecases.cashback import cashback_purchase
 
 
 purchase_router = APIRouter(prefix="/v1/cashback/purchase", tags=["purchase"])

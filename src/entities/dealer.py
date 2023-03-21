@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from cashback.entities.auth import Auth
+from src.entities.auth import Auth
 
 
 class Dealer(BaseModel):

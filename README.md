@@ -4,6 +4,7 @@ Sistema de cashback para compra de revendedoras.
 
 ## Pré requisito
 
+- Intalar o [Pyenv](https://realpython.com/intro-to-pyenv/#installing-pyenv)
 - Instalar o [Poetry](https://python-poetry.org/docs/#installation)
 
 
@@ -19,6 +20,12 @@ Entre no diretório do projeto
 
 ```bash
   cd cashback
+```
+
+Preparando o ambiente
+
+```bash
+  make prepare
 ```
 
 Instale as dependências
@@ -47,4 +54,19 @@ Para rodar os testes, rode o seguinte comando
 
 ```http
   GET /docs
+```
+
+
+## Rodando no docker
+
+Inicie os containers
+
+```bash
+  make up
+```
+
+Parar os containers
+
+```bash
+  make down
 ```

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from cashback.entities.auth import Auth
+from src.entities.auth import Auth
 
 
 auth_router = APIRouter(prefix="/v1/cashback/auth", tags=["auth"])

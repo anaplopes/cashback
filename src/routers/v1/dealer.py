@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from cashback.entities.dealer import Dealer
+from src.entities.dealer import Dealer
 
 
 dealer_router = APIRouter(prefix="/v1/cashback/dealer", tags=["dealer"])

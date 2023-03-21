@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  db:
+    container_name: db
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cashback
+    restart: always
+    networks:
+      - default
+  
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    networks:
+      - default
+    depends_on:
+      - db
+
+networks:
+  default:
+    driver: bridge

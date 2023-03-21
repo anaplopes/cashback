@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from cashback.routers.v1.auth import auth_router
-from cashback.routers.v1.dealer import dealer_router
-from cashback.routers.v1.cashback import cashback_router
-from cashback.routers.v1.purchase import purchase_router
+from src.routers.v1.auth import auth_router
+from src.routers.v1.dealer import dealer_router
+from src.routers.v1.cashback import cashback_router
+from src.routers.v1.purchase import purchase_router
 from fastapi_healthcheck import HealthCheckFactory, healthCheckRoute
 
 

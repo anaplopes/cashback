@@ -1,5 +1,5 @@
 from typing import List
-from cashback.entities.purchase import Purchase
+from src.entities.purchase import Purchase
 
 
 def bonus(sum_purchase: float) -> int:
