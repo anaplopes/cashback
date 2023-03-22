@@ -16,19 +16,15 @@ lint:
 
 .PHONY: runserver
 runserver:
-	uvicorn cashback.main:app --reload
+	uvicorn src.main:create_app --reload
 
 .PHONY: requirements
 requirements:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-.PHONY: migrate
-migrate:
-	poetry run alembic upgrade head
-
 .PHONY: up
 up:
-	docker compose up --env-file .env -d --build
+	docker compose --env-file .env up -d --build
 
 .PHONY: down
 down:

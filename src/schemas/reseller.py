@@ -1,8 +1,8 @@
 from pydantic import BaseModel
-from src.entities.auth import Auth
+from src.schemas.auth import Auth
 
 
-class Dealer(BaseModel):
+class Reseller(BaseModel):
     name: str
     cpf: str
     auth: Auth

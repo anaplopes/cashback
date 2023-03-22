@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 
-cashback_router = APIRouter(prefix="/v1/cashback", tags=["cashback"])
+cashback_router = APIRouter(prefix="/cashback", tags=["cashback"])
 
 
 @cashback_router.get("/{cpf}")

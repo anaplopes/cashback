@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-from src.entities.constants import PurchaseStatus
+from src.schemas.constants import PurchaseStatus
 
 
 class Purchase(BaseModel):
