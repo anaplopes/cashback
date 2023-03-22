@@ -1,5 +1,5 @@
 import uuid
-from src.infra.database import Base
+from src.infra.database.client import Base
 from sqlalchemy import Column, String, Float, Date
 from sqlalchemy.dialects.postgresql import UUID
 

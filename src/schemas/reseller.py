@@ -1,8 +1,13 @@
-from pydantic import BaseModel
-from src.schemas.auth import Auth
+from pydantic import BaseModel, EmailStr
 
 
 class Reseller(BaseModel):
     name: str
     cpf: str
-    auth: Auth
+    email: EmailStr
+    password: str
+
+
+class Auth(BaseModel):
+    email: EmailStr
+    password: str

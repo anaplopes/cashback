@@ -15,7 +15,7 @@ async def register_reseller(reseller: Reseller, service: ResellerUseCase = Depen
 
     - **name**: nome do revendedor(a)
     - **cpf**: cpf do revendedor(a)
-    - **auth.email**: email do revendedor(a)
-    - **auth.password**: senha do revendedor(a)
+    - **email**: email do revendedor(a)
+    - **password**: senha do revendedor(a)
     """
     return await service.create(reseller=reseller)

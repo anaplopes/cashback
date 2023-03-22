@@ -20,20 +20,20 @@ def create_app() -> FastAPI:
     )
 
     # Add Routers
-    from src.routes.v1.auth import auth_router
+    # from src.routes.v1.auth import auth_router
 
-    app.include_router(auth_router, prefix=settings.PREFIX_API)
+    # app.include_router(auth_router, prefix=settings.PREFIX_API)
 
-    from src.routes.v1.reseller import reseller_router
+    # from src.routes.v1.reseller import reseller_router
 
-    app.include_router(reseller_router, prefix=settings.PREFIX_API)
+    # app.include_router(reseller_router, prefix=settings.PREFIX_API)
 
     from src.routes.v1.cashback import cashback_router
 
     app.include_router(cashback_router, prefix=settings.PREFIX_API)
 
-    from src.routes.v1.purchase import purchase_router
+    # from src.routes.v1.purchase import purchase_router
 
-    app.include_router(purchase_router, prefix=settings.PREFIX_API)
+    # app.include_router(purchase_router, prefix=settings.PREFIX_API)
 
     return app

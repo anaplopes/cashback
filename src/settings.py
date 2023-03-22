@@ -2,11 +2,16 @@ from pydantic import BaseSettings, PostgresDsn
 
 
 class Settings(BaseSettings):
+    # APP
     PREFIX_API: str = "/api/v1"
     NAME: str = "Cashback"
     VERSION: str = "0.1.0"
     DESCRIPTION: str = "Sistema de cashback para compra de revendedoras."
 
+    # API BOTICARIO
+    GB_API_URL: str
+
+    # DATABASE
     DB_USER: str
     DB_PASSWORD: str
     DB_HOST: str

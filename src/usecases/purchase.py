@@ -1,10 +1,9 @@
 from typing import List
-from src.schemas.purchase import Purchase
-from src.schemas.constants import PurchaseStatus
+from src.schemas.purchase import Purchase, PurchaseStatus
 
 
 class PurchaseUseCase:
-    async def _bonus(self, sum_purchase: float) -> int:
+    async def __bonus(self, sum_purchase: float) -> int:
         if sum_purchase <= 1000.0:
             return 10
 
@@ -14,9 +13,9 @@ class PurchaseUseCase:
         if sum_purchase > 1500.0:
             return 20
 
-    async def _calc_cashback(self, rows: List[Purchase]) -> List[Purchase]:
+    async def __calc_cashback(self, rows: List[Purchase]) -> List[Purchase]:
         sum_purchase: float = sum([row.value for row in rows])
-        cashback: int = self._bonus(sum_purchase=sum_purchase)
+        cashback: int = self.__bonus(sum_purchase=sum_purchase)
 
         for row in rows:
             val_cashback = round(row.value * (cashback / 100), 2)
@@ -31,7 +30,7 @@ class PurchaseUseCase:
 
     async def find(self, cpf: str) -> List[Purchase]:
         rows = None  # TODO filtrar todas as compras do mês
-        return self._calc_cashback(rows=rows)
+        return self.__calc_cashback(rows=rows)
 
     async def create(self, purchase: Purchase):
         if purchase.cpf == "15350946056":

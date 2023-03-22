@@ -1,7 +1,12 @@
+from enum import Enum
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-from src.schemas.constants import PurchaseStatus
+
+
+class PurchaseStatus(str, Enum):
+    VALIDATION = "Em validação"
+    APPROVED = "Aprovado"
 
 
 class Purchase(BaseModel):
