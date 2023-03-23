@@ -28,12 +28,6 @@ Preparando o ambiente
   make prepare
 ```
 
-Inicie o container db
-
-```bash
-  make up-db
-```
-
 Instale as dependências
 
 ```bash
