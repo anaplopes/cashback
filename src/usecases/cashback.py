@@ -1,16 +1,22 @@
 import json
-from typing import Any
+from fastapi import Depends, status
+from src.schemas.constant import Output
 from src.infra.boticario.client import BoticarioClient
 from src.infra.boticario.exceptions import BoticarioException, BoticarioRequestException
 
 
 class CashbackUseCase:
-    def __init__(self) -> None:
-        self.boticario_client = BoticarioClient()
+    def __init__(self, boticario_client: BoticarioClient = Depends()) -> None:
+        self.boticario_client = boticario_client
 
-    async def get(self, cpf: str) -> Any:
+    async def get(self, cpf: str) -> Output:
         try:
             send = self.boticario_client.get_cashback(cpf=cpf)
-            return json.loads(send.response)
+            data = json.loads(send.response)
+            return Output(
+                data=[{"credit": data["body"]["credit"]}],
+                message="OK",
+                statusCode=status.HTTP_200_OK,
+            )
         except BoticarioRequestException or BoticarioException as e:
-            return f"BoticarioError: {e.error} - {e.message}"
+            return Output(message=e.message, error=e.error, statusCode=e.status_code)

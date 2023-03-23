@@ -1,12 +1,5 @@
-from enum import Enum
-from datetime import date
-from typing import Optional
-from pydantic import BaseModel
-
-
-class PurchaseStatus(str, Enum):
-    VALIDATION = "Em validação"
-    APPROVED = "Aprovado"
+from datetime import datetime, date
+from pydantic import BaseModel, UUID4
 
 
 class Purchase(BaseModel):
@@ -14,4 +7,11 @@ class Purchase(BaseModel):
     date: date
     value: float
     cpf: str
-    status: Optional[PurchaseStatus] = PurchaseStatus.VALIDATION
+
+
+class PurchaseSchema(Purchase):
+    id: UUID4
+    status: str
+    created_at: datetime
+    val_cashback: float
+    per_cashback: float

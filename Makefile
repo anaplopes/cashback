@@ -22,9 +22,13 @@ runserver:
 requirements:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+.PHONY: up-db
+up-db:
+	docker compose up -d db
+
 .PHONY: up
 up:
-	docker compose --env-file .env up -d --build
+	docker compose up -d --build
 
 .PHONY: down
 down:

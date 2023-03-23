@@ -9,7 +9,10 @@ from src.infra.boticario.exceptions import BoticarioException, BoticarioRequestE
 class BoticarioClient:
     def __init__(self) -> None:
         self._url = settings.GB_API_URL
-        self._header = {"Content-type": "application/json"}
+        self._header = {
+            "Content-type": "application/json",
+            "token": "ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm",
+        }
         self._default_return = namedtuple(
             "BoticarioClient", "status_code request response"
         )

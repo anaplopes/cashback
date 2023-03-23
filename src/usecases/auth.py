@@ -1,23 +1,27 @@
+import base64
 from src.schemas.auth import Auth
-from fastapi import HTTPException, status
+from src.schemas.constant import Output
+from fastapi import Depends, status, HTTPException
+from src.repositories.reseller import ResellerRepository
 
 
 class AuthUseCase:
-    async def validate(self, auth: Auth):
-        # TODO filtrar revendedor pelo email
-        # TODO validar a senha
-        # TODO se a senha esta correta retorna o jwt
-        # TODO se a senha não esta correta retorna status não autorizado
-        user = auth
-        password = False
+    def __init__(self, repository: ResellerRepository = Depends()) -> None:
+        self.repository = repository
+
+    async def validate(self, auth: Auth) -> Output | HTTPException:
+        user = self.repository.filter_by_email(email=auth.email)
         if not user:
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="User does not exist"
+                status_code=status.HTTP_403_FORBIDDEN, detail="Unregistered user"
             )
 
-        if user and password is False:
+        pwd_hash = user.password
+        pwd_str = base64.b64decode(pwd_hash.encode()).decode()
+        verify_pwd = True if pwd_str == auth.password else False
+        if verify_pwd is False:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password"
             )
 
-        return "JWT"
+        return Output(message="Authorized user", statusCode=status.HTTP_200_OK)
