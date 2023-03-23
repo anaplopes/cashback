@@ -22,6 +22,10 @@ runserver:
 requirements:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+.PHONY: test
+test:
+	pytest -v
+
 .PHONY: up-db
 up-db:
 	docker compose up -d db

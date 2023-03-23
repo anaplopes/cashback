@@ -59,7 +59,7 @@ Para rodar os testes, rode o seguinte comando
 
 ## Rodando no docker
 
-Inicie os containers
+Inicie todos os containers
 
 ```bash
   make up
@@ -69,4 +69,10 @@ Parar os containers
 
 ```bash
   make down
+```
+
+Limpar o docker
+
+```bash
+  make clean
 ```
