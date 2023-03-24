@@ -5,5 +5,5 @@ from src.infra.database.connection import engine
 Base = declarative_base()
 
 
-def init():
+def model_init():
     Base.metadata.create_all(engine())

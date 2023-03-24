@@ -1,9 +1,12 @@
+import logging
 from fastapi import FastAPI
 from src.settings import settings
-from src.routes.v1.auth import auth_router
-from src.routes.v1.reseller import reseller_router
-from src.routes.v1.cashback import cashback_router
-from src.routes.v1.purchase import purchase_router
+from src.api.v1.auth import auth_router
+from src.api.v1.reseller import reseller_router
+from src.api.v1.cashback import cashback_router
+from src.api.v1.purchase import purchase_router
+from fastapi.middleware.cors import CORSMiddleware
+from src.infra.database.modelbase import model_init
 from fastapi_healthcheck import HealthCheckFactory, healthCheckRoute
 
 
@@ -13,6 +16,17 @@ def create_app() -> FastAPI:
         title=settings.APP_NAME,
         description=settings.APP_DESCRIPTION,
         version=settings.API_VERSION,
+        debug=settings.DEBUG,
+    )
+
+    # Add middleware cors
+    origins = ["http://localhost:8000" "https://localhost:8000"]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
 
     # Add Health Checks
@@ -32,8 +46,20 @@ def create_app() -> FastAPI:
     app.include_router(purchase_router, prefix=settings.API_PREFIX)
 
     # Initialise Data Model
-    from src.models.base import init
-
-    init()
+    model_init()
 
     return app
+
+
+app = create_app()
+log = logging.getLogger("uvicorn")
+
+
+@app.on_event("startup")
+async def startup_event():
+    log.info("Application startup")
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    log.info("Application shutdown")

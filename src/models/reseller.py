@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy.sql import func
-from src.models.base import Base
+from src.infra.database.modelbase import Base
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, String, DateTime
 

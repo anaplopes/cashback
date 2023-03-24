@@ -1,3 +1,4 @@
+import logging
 from pydantic import BaseSettings, PostgresDsn
 
 
@@ -7,25 +8,23 @@ class Settings(BaseSettings):
     API_VERSION: str = "0.1.0"
 
     # APP
+    DEBUG: str = False
     APP_NAME: str = "Cashback"
     APP_DESCRIPTION: str = "Sistema de cashback para compra de revendedoras."
 
+    # DATABASE
+    DB_URI: PostgresDsn
+
     # API BOTICARIO
     GB_API_URL: str
-
-    # DATABASE
-    DB_USER: str
-    DB_PASSWORD: str
-    DB_HOST: str
-    DB_PORT: str
-    DB_NAME: str
-    DB_URI: PostgresDsn
-    DEBUG: bool
+    GB_TOKEN: str
 
     class Config:
         case_sensitive = True
-        env_file = ".env"
+        env_file = ".env.dev"
         env_file_encoding = "utf-8"
 
 
+log = logging.getLogger("uvicorn")
+log.info("Loading config settings from the environment...")
 settings = Settings()

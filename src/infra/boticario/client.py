@@ -11,7 +11,7 @@ class BoticarioClient:
         self._url = settings.GB_API_URL
         self._header = {
             "Content-type": "application/json",
-            "token": "ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm",
+            "token": settings.GB_TOKEN,
         }
         self._default_return = namedtuple(
             "BoticarioClient", "status_code request response"
