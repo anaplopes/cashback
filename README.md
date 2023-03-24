@@ -76,7 +76,7 @@ Para rodar os testes, rode o seguinte comando
 ```
 
 
-## Rodando em ambiente local
+## Rodando no docker
 
 Adicione as variaveis de ambiente no arquivo `.env`
 
