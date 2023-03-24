@@ -1,4 +1,4 @@
-# Cashback
+# Cashback Boticario
 Sistema de cashback para compra de revendedoras.
 
 
