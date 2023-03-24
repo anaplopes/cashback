@@ -85,8 +85,7 @@ Adicione as variaveis de ambiente no arquivo `.env`
     - GB_API_URL: url da API Grupo Boticario
     - GB_TOKEN: token da API Grupo Boticario
 
-  - Opcional
-    * Essa mudança afetará a configuração DB_URI nos arquivos `.env*`
+  - Opcional (***Essa mudança afetará a configuração DB_URI nos arquivos `.env*`)
     - DB_USER: usuario do banco de dados
     - DB_PASSWORD: senha do banco de dados
     - DB_NAME: nome do banco de dados
