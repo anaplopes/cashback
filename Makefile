@@ -5,7 +5,7 @@ prepare:
 
 .PHONY: install
 install:
-	poetry env use python3.10.6
+	poetry env use python3.10
 	poetry install
 	poetry run pre-commit install
 
