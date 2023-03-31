@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Any
 
 
@@ -9,7 +9,7 @@ class PurchaseStatus(str, Enum):
 
 
 class Output(BaseModel):
-    data: Optional[List[Any]] = []
+    data: Optional[List[Any]] = Field(default_factory=list)
     message: str
     error: Optional[str] = None
     statusCode: int
