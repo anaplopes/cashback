@@ -14,9 +14,9 @@ lint:
 	black .
 	flake8 .
 
-.PHONY: runserver
+.PHONY: run-server
 runserver:
-	uvicorn src.main:create_app --reload
+	uvicorn src.main:app --reload
 
 .PHONY: requirements
 requirements:

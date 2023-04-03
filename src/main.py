@@ -1,4 +1,3 @@
-import logging
 from fastapi import FastAPI
 from src.settings import settings
 from src.api.v1.auth import auth_router
@@ -52,14 +51,3 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-log = logging.getLogger("uvicorn")
-
-
-@app.on_event("startup")
-async def startup_event():
-    log.info("Application startup")
-
-
-@app.on_event("shutdown")
-def shutdown_event():
-    log.info("Application shutdown")

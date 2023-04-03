@@ -1,6 +1,6 @@
 # Cashback Boticario
-Sistema de cashback para compra de revendedoras.
 
+Sistema de cashback para compra de revendedoras.
 
 ## Documentação da API
 
@@ -12,7 +12,6 @@ Sistema de cashback para compra de revendedoras.
   GET /redoc
 ```
 
-
 ## Pré requisito
 
 - [Pyenv](https://realpython.com/intro-to-pyenv/#installing-pyenv)
@@ -21,10 +20,10 @@ Sistema de cashback para compra de revendedoras.
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 - Instalar pacotes essenciais (Ubuntu/Debian)
+
   ```bash
     sudo apt-get update && apt-get install -y make curl build-essential
   ```
-
 
 ## Rodando em ambiente de desenvolvimento
 
@@ -52,10 +51,13 @@ Instale as dependências
   make install
 ```
 
-Adicione as variaveis de ambiente no arquivo `.env.dev`
-  - DB_URI: "postgresql://{DB_USER}:{DB_PASSWORD}@localhost:5432/{DB_NAME}"
-  - GB_API_URL: url da API Grupo Boticario
-  - GB_TOKEN: token da API Grupo Boticario
+Adicione as variaveis de ambiente no arquivo `.env.dev`:
+
+- DEBUG=True (se não definida o sistema usara `False` como valor padrão)
+- ENVIRONMENT="dev" (se não definida o sistema usara `dev` como valor padrão)
+- DB_URI="postgresql://{DB_USER}:{DB_PASSWORD}@localhost:5432/{DB_NAME}"
+- GB_API_URL=url da API Grupo Boticario
+- GB_TOKEN=token da API Grupo Boticario
 
 Inicie o container do banco de dados
 
@@ -66,7 +68,7 @@ Inicie o container do banco de dados
 Inicie o servidor
 
 ```bash
-  make runserver
+  make run-server
 ```
 
 Para rodar os testes, rode o seguinte comando
@@ -75,20 +77,21 @@ Para rodar os testes, rode o seguinte comando
   make test
 ```
 
-
 ## Rodando no docker
 
-Adicione as variaveis de ambiente no arquivo `.env`
+Adicione as variaveis de ambiente no arquivo `.env.prod`
 
-  - Obrigatório
-    - DB_URI="postgresql://{DB_USER}:{DB_PASSWORD}@db:5432/{DB_NAME}"
-    - GB_API_URL: url da API Grupo Boticario
-    - GB_TOKEN: token da API Grupo Boticario
+- Obrigatório
+  - DEBUG=False (se não definida o sistema usara `False` como valor padrão)
+  - ENVIRONMENT="prod" (se não definida o sistema usara `dev` como valor padrão)
+  - DB_URI="postgresql://{DB_USER}:{DB_PASSWORD}@db:5432/{DB_NAME}"
+  - GB_API_URL=url da API Grupo Boticario
+  - GB_TOKEN=token da API Grupo Boticario
 
-  - Opcional (***Essa mudança afetará a configuração DB_URI nos arquivos `.env*`)
-    - DB_USER: usuario do banco de dados
-    - DB_PASSWORD: senha do banco de dados
-    - DB_NAME: nome do banco de dados
+- Opcional (***Essa mudança afetará a configuração DB_URI nos arquivos `.env.*`)
+  - DB_USER=usuario do banco de dados
+  - DB_PASSWORD=senha do banco de dados
+  - DB_NAME=nome do banco de dados
 
 Inicie todos os containers
 

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 from src.schemas.constant import Output
 from src.models.purchase import PurchaseModel
 from src.schemas.constant import PurchaseStatus
@@ -21,13 +21,29 @@ class PurchaseUseCase:
         if sum_purchase > 1500.0:
             return 20
 
-    def calc_cashback(self, rows: List[PurchaseSchema]) -> List[PurchaseSchema]:
-        sum_purchase: float = sum([row.value for row in rows])
-        cashback: int = self.__bonus(sum_purchase=sum_purchase)
+    def sum_purchase(self, rows: List[PurchaseSchema]) -> Dict[int, float]:
+        purchase_month = {}
+        for purchase in rows:
+            month_purchase = purchase.date.month
 
+            if month_purchase in purchase_month:
+                purchase_month[month_purchase] += purchase.value
+            else:
+                purchase_month[month_purchase] = purchase.value
+
+        return purchase_month
+
+    def calc_cashback(self, rows: List[PurchaseSchema]) -> List[PurchaseSchema]:
+        sum_purchase_month = self.sum_purchase(rows=rows)
         for row in rows:
+            month_purchase = row.date.month
+            cashback: int = self.__bonus(
+                sum_purchase=sum_purchase_month[month_purchase]
+            )
             row.val_cashback = round(row.value * (cashback / 100), 2)
-            row.per_cashback = round((row.val_cashback / sum_purchase) * 100, 2)
+            row.per_cashback = round(
+                (row.val_cashback / sum_purchase_month[month_purchase]) * 100, 2
+            )
         return rows
 
     async def find(self, cpf: str) -> Output | HTTPException:

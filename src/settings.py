@@ -1,4 +1,6 @@
+import os
 import logging
+from functools import lru_cache
 from pydantic import BaseSettings, PostgresDsn
 
 
@@ -8,7 +10,8 @@ class Settings(BaseSettings):
     API_VERSION: str = "0.1.0"
 
     # APP
-    DEBUG: str = False
+    ENVIRONMENT: str = "dev"
+    DEBUG: bool = False
     APP_NAME: str = "Cashback"
     APP_DESCRIPTION: str = "Sistema de cashback para compra de revendedoras."
 
@@ -21,10 +24,11 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
-        env_file = ".env.dev"
-        env_file_encoding = "utf-8"
 
 
 log = logging.getLogger("uvicorn")
 log.info("Loading config settings from the environment...")
-settings = Settings()
+
+
+environment = os.getenv("ENVIRONMENT", "dev")
+settings = Settings(_env_file=f".env.{environment}")
