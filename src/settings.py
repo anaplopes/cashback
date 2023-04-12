@@ -1,6 +1,5 @@
 import os
 import logging
-from functools import lru_cache
 from pydantic import BaseSettings, PostgresDsn
 
 
@@ -18,7 +17,7 @@ class Settings(BaseSettings):
     # DATABASE
     DB_URI: PostgresDsn
 
-    # API BOTICARIO
+    # BOTICARIO
     GB_API_URL: str
     GB_TOKEN: str
 
