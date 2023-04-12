@@ -1,4 +1,4 @@
-from src.schemas.auth import Auth
+from src.schemas.reseller import Auth
 from fastapi import APIRouter, Depends
 from src.usecases.auth import AuthUseCase
 

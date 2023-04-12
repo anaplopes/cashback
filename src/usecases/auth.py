@@ -1,5 +1,5 @@
 import base64
-from src.schemas.auth import Auth
+from src.schemas.reseller import Auth
 from src.schemas.constant import Output
 from fastapi import Depends, status, HTTPException
 from src.repositories.reseller import ResellerRepository
