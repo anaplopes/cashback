@@ -1,5 +1,5 @@
 import os
-import logging
+from log_config import logger
 from pydantic import BaseSettings, PostgresDsn
 
 
@@ -25,9 +25,6 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 
-log = logging.getLogger("uvicorn")
-log.info("Loading config settings from the environment...")
-
-
+logger.info("Loading config settings from the environment...")
 environment = os.getenv("ENVIRONMENT", "dev")
 settings = Settings(_env_file=f".env.{environment}")
