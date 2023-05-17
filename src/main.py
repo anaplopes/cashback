@@ -8,6 +8,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.infra.database.modelbase import model_init
 from fastapi_healthcheck import HealthCheckFactory, healthCheckRoute
 
+from logging.config import dictConfig
+from log_config import LogConfig
+
+
+dictConfig(LogConfig().dict())
+
 
 # Core Application Instance
 def create_app() -> FastAPI:
