@@ -1,4 +1,5 @@
 import base64
+from log_config import logger
 from src.schemas.reseller import Auth
 from src.schemas.constant import Output
 from fastapi import Depends, status, HTTPException
@@ -12,6 +13,7 @@ class AuthUseCase:
     async def validate(self, auth: Auth) -> Output | HTTPException:
         user = self.repository.filter_by_email(email=auth.email)
         if not user:
+            logger.info("Unregistered user")
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN, detail="Unregistered user"
             )
