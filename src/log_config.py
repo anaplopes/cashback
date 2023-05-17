@@ -31,4 +31,4 @@ class LogConfig(BaseModel):
     }
 
 
-logger = logging.getLogger(LogConfig.LOGGER_NAME)
+logger = logging.getLogger(LogConfig().LOGGER_NAME)
